@@ -6,8 +6,6 @@ const Hompage = () => {
   const [formvalue, setFormvalue] = useState({
     Name: "",
     Gender: "",
-
-    County: "",
   });
   const [check, setCheck] = useState([]);
   const changeArray = (e) => {
@@ -26,9 +24,8 @@ const Hompage = () => {
     console.log(checked);
     if (checked) {
       setFormvalue({ ...formvalue, [name]: value });
-    } else {
-      setFormvalue({ ...formvalue, [name]: "" });
     }
+    console.log(value);
     setFormvalue({ ...formvalue, [name]: value });
   };
   useEffect(() => {
@@ -60,25 +57,28 @@ const Hompage = () => {
           vlaue={formvalue.Name}
           onChange={changeValue}
         ></Form.Control>
+      </Form>
+      <Form>
         <Form.Group>
-          <Form.Label>男</Form.Label>
-          <Form.Control
+          <Form.Label htmlFor="boy">男</Form.Label>
+          <Form.Check
             value="男"
             onChange={changeValue}
             name="Gender"
             type="radio"
+            id="boy"
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>女</Form.Label>
-          <Form.Control
+          <Form.Label htmlFor="girl">女</Form.Label>
+          <Form.Check
             value="女"
             onChange={changeValue}
             name="Gender"
             type="radio"
+            id="girl"
           />
         </Form.Group>
-
+      </Form>
+      <Form>
         {friuts.map((item) => (
           <Form.Group>
             <Form.Label>{item}</Form.Label>
@@ -90,11 +90,12 @@ const Hompage = () => {
             />
           </Form.Group>
         ))}
-        <select value={formvalue.County} onChange={changeValue} name="County">
-          <option name="county" value="台中市">
-            {" "}
-            台中市
-          </option>
+      </Form>
+      <Form>
+        <select onChange={changeValue} name="County">
+          <option>請選擇縣市</option>
+          <option value="台中市"> 台中市</option>
+          <option value="彰化市"> 彰化市</option>
         </select>
       </Form>
     </>
