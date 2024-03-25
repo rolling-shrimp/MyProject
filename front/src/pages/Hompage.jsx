@@ -23,6 +23,7 @@ const Hompage = () => {
   const grape = useRef();
   const changeValue = (e) => {
     let { name, value, checked } = e.target;
+    console.log(checked);
     if (checked) {
       setFormvalue({ ...formvalue, [name]: value });
     } else {
@@ -62,7 +63,7 @@ const Hompage = () => {
         <Form.Group>
           <Form.Label>男</Form.Label>
           <Form.Control
-            value={formvalue.Gender}
+            value="男"
             onChange={changeValue}
             name="Gender"
             type="radio"
@@ -71,7 +72,7 @@ const Hompage = () => {
         <Form.Group>
           <Form.Label>女</Form.Label>
           <Form.Control
-            value={formvalue.Gender}
+            value="女"
             onChange={changeValue}
             name="Gender"
             type="radio"
