@@ -1,26 +1,49 @@
-import { Route, Routes } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
-import Hompage from "./pages/Hompage";
+import React from "react";
+import SelectPlace from "./components/SelectPlace";
+import { Modal } from "react-bootstrap";
+import Weather from "./components/Weather";
+import { useState, useEffect } from "react";
+import { theFunctions } from "./components/functions";
+import "bootstrap/dist/css/bootstrap.css";
+
 function App() {
+  const [countyChoosed, setcountyChoosed] = useState(
+    theFunctions.getLocalStorage() || {
+      縣市: "彰化縣",
+      "鄉鎮、區": "彰化市",
+    }
+  );
+  const [openOrnot, setOpenOrNot] = useState(false);
+  const open = () => {
+    setOpenOrNot(true);
+  };
+  const close = () => {
+    setOpenOrNot(false);
+  };
+  useEffect(() => {
+    if (theFunctions.getLocalStorage()) {
+      setcountyChoosed(theFunctions.getLocalStorage());
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header>
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            第三題的導列
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </header>
-
-      <Routes>
-        <Route path="/" element={<Hompage />}></Route>
-      </Routes>
+      <Modal size="lg" show={openOrnot} onHide={close}>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <SelectPlace
+            key="add"
+            type="add"
+            setcountyChoosed={setcountyChoosed}
+          />
+        </Modal.Body>
+      </Modal>
+      <SelectPlace
+        type="choose"
+        setcountyChoosed={setcountyChoosed}
+        open={open}
+      />
+      <Weather countyChoosed={countyChoosed} type="getPlaceCode" />
     </div>
   );
 }
