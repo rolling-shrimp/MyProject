@@ -34,7 +34,6 @@ const useFectchWeatherForeCast = (placeToShow, countyChoosed) => {
   const getAllData = useCallback(() => {
     const fetchData = async () => {
       let apiParam;
-      console.log(theplaces, "weather theplaces");
 
       try {
         for (let item of theplaces) {
@@ -68,8 +67,7 @@ const useFectchWeatherForeCast = (placeToShow, countyChoosed) => {
 
         let url = `https://dataservice.accuweather.com/currentconditions/v1/${apiParam}?apikey=${process.env.REACT_APP_APIKEY}&language=zh-tw&details=true`;
         let foreCastUrl = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${apiParam}?apikey=${process.env.REACT_APP_APIKEY}&language=zh-tw&details=true&metric=true`;
-        console.log(url);
-        console.log(foreCastUrl);
+
         let [weatherText, forecast] = await Promise.all([
           getWeatherAndForeCast(url, "weather"),
           getWeatherAndForeCast(foreCastUrl, "forecast"),

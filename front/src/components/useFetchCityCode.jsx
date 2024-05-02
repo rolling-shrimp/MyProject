@@ -10,7 +10,6 @@ const useFetchCityCode = (placeToshow) => {
 
   const fetch = useCallback(() => {
     const getCityCodes = async () => {
-      console.log(theplaces);
       let apiParam;
 
       if (theplaces["里"]) {
@@ -20,10 +19,9 @@ const useFetchCityCode = (placeToshow) => {
       } else {
         apiParam = theplaces["縣市"];
       }
-      console.log(apiParam);
 
       let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${process.env.REACT_APP_APIKEY}&q=${apiParam}&language=zh-tw`;
-      console.log(url);
+
       try {
         let response = await theFunctions.fetchWeather(url);
         let data = await response.json();
