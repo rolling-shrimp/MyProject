@@ -22,7 +22,7 @@ const useFetchCityCode = (placeToshow) => {
       }
       console.log(apiParam);
 
-      let url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${process.env.REACT_APP_APIKEY}&q=${apiParam}&language=zh-tw`;
+      let url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${process.env.REACT_APP_APIKEY}&q=${apiParam}&language=zh-tw`;
       console.log(url);
       try {
         let response = await theFunctions.fetchWeather(url);
