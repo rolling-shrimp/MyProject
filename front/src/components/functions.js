@@ -37,15 +37,12 @@ export const addOrsearch = async (place, setcountyChoosed, Swal, type) => {
       queryObj[item] = place[item];
     }
   }
-  if (type === "add") {
-    localStorage.setItem("place", JSON.stringify(queryObj));
-    Swal.fire({
-      title: "儲存完成",
-      confirmButtonText: "確定",
-      confirmButtonColor: "black",
-      icon: "success",
-    });
-  } else {
-    setcountyChoosed(queryObj);
-  }
+  localStorage.setItem("place", JSON.stringify(queryObj));
+  setcountyChoosed(queryObj);
+  Swal.fire({
+    title: "儲存完成",
+    confirmButtonText: "確定",
+    confirmButtonColor: "black",
+    icon: "success",
+  });
 };

@@ -102,10 +102,10 @@ const SelectPlace = ({ type, setcountyChoosed, open }) => {
               variant="secondary"
               type="submit"
               onClick={() => {
-                addOrsearch(place, setcountyChoosed, Swal, "search");
+                addOrsearch(place, setcountyChoosed, Swal, "add");
               }}
             >
-              搜尋
+              儲存
             </Button>
           ) : (
             <Button
@@ -120,7 +120,7 @@ const SelectPlace = ({ type, setcountyChoosed, open }) => {
             </Button>
           )}
         </Col>
-        {type === "choose" && (
+        {/* {type === "choose" && (
           <>
             {" "}
             <Col
@@ -136,7 +136,7 @@ const SelectPlace = ({ type, setcountyChoosed, open }) => {
             </Col>
             <Col md={2}></Col>
           </>
-        )}
+        )} */}
       </Row>
     </Container>
   );
